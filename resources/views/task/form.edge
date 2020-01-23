@@ -1,0 +1,39 @@
+@layout('main')
+
+@section('content')
+
+<h2>Task form</h2>
+
+@if(!task)
+  <form action="{{ route('task.store') }}" method="POST">
+@else
+  <form action="{{ route('task.update', {id: task.id}) }}?_method=PATCH" method="POST">
+@endif
+
+  {{ csrfField() }}
+
+  <div class="form-group">
+    <label for="title">Title *</label>
+    <input name="title" id="title" class="form-control" required="" placeholder="Task title" autocomplete="off" autofocus=""
+      @if(task)
+        value="{{ task.title }}"
+      @endif
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="body">Body *</label>
+    @if(task)
+      <textarea name="body" id="body" class="form-control" required="" placeholder="Task description" rows="5">{{ task.body }}</textarea>
+    @else
+      <textarea name="body" id="body" class="form-control" required="" placeholder="Task description" rows="5"></textarea>
+    @endif
+  </div>
+
+  <div class="button">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+
+</form>
+
+@endsection

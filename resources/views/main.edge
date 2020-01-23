@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aula AdonisJs</title>
+  {{ style('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}
+</head>
+<body>
+
+  @include('inc/nav')
+
+  <div class="container">
+
+    @if(flashMessage('notification'))
+      <div class="alert alert-{{ flashMessage('notification.type') }}"" role="alert" onclick="this.remove()" style="cursor: pointer">
+        {{ flashMessage('notification.message') }}
+      </div>
+    @endif
+
+    @!section('content')
+  </div>
+
+  {{ script('https://code.jquery.com/jquery-3.4.1.slim.min.js') }}
+  {{ script('https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js') }}
+  {{ script('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js') }}
+  {{ script('https://use.fontawesome.com/601fc4862b.js') }}
+
+</body>
+</html>

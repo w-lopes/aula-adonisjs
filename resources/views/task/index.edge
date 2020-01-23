@@ -1,0 +1,27 @@
+@layout('main')
+
+@section('content')
+
+<h2>Tasks</h2>
+
+<ul class="list-group">
+  @each(task in tasks.rows)
+    <li class="list-group-item list-group-item-action">
+      <form action="{{ route('task.destroy', {id: task.id}) }}?_method=DELETE" method="POST" class="float-left mr-2">
+        {{ csrfField() }}
+        <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-trash text-danger"></i></a>
+      </form>
+      <a href="{{ route('task.edit', {id: task.id}) }}" class="float-left mr-2"><i class="fa fa-edit text-primary"></i></a>
+      <a href="{{ route('task.toggle', {id: task.id}) }}" class="float-left mr-2">
+        @if(task.done)
+          <i class="fa fa-check-square"></i>
+        @else
+          <i class="fa fa-minus-square"></i>
+        @endif
+      </a>
+      <span>{{ task.title }}</span>
+    </li>
+  @endeach
+</ul>
+
+@endsection
